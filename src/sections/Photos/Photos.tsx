@@ -1,43 +1,48 @@
-import Image_1 from './images/1.jpg'
-import Image_2 from './images/2.jpg'
-import Image_3 from './images/3.jpg'
-import Image_4 from './images/4.jpg'
-import Image_5 from './images/5.jpg'
-import Image_6 from './images/6.jpg'
-import Image_7 from './images/7.jpg'
-import Image_8 from './images/8.jpg'
-import Image_9 from './images/9.jpg'
-import Photo from './components/Photo.tsx';
-import {Button} from '../../components/Button.tsx';
-import {Text, TextVariant} from '../../components/Text.tsx';
-import {useMediaBreakpoint} from '../../hooks/useMediaBreakpoint.ts';
+import {useState} from 'react';
+import {Button} from "../../components/Button.tsx";
+import {Text, TextVariant} from "../../components/Text.tsx";
 
-type PhotosProps = {
-  href: string
-}
-export const Photos = ({href}: PhotosProps) => {
-  const lg = useMediaBreakpoint('lg')
-  return (
-    <div className='flex flex-col py-24 gap-6 text-center items-center'>
-      <div className='flex flex-col lg:flex-row justify-center gap-5'>
-        <Photo src={Image_1}></Photo>
-        <Photo src={Image_2}></Photo>
-        <Photo src={Image_3}></Photo>
-      </div>
-      {lg && <><div className='flex justify-center gap-5'>
-        <Photo src={Image_4}></Photo>
-        <Photo src={Image_5}></Photo>
-        <Photo src={Image_6} alt={'6'}></Photo>
-      </div>
-        <div className='flex justify-center gap-5'>
-          <Photo src={Image_7}></Photo>
-          <Photo src={Image_8}></Photo>
-          <Photo src={Image_9}></Photo>
-        </div></>}
 
-      <div className='flex pt-6 self-center'>
-        <a target="_blank" href={href}><Button><Text variant={TextVariant.H3}>Купить билет</Text></Button></a>
-      </div>
-    </div>
-  );
+export const Photos = (href: string) => {
+    const images = [
+        'src/sections/Photos/images/0.jpg',
+        'src/sections/Photos/images/1.jpg',
+        'src/sections/Photos/images/2.jpg',
+    ]
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const goToPrevious = () => {
+        const isFirstSlide = currentIndex === 0;
+        const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1;
+        setCurrentIndex(newIndex);
+    };
+
+    const goToNext = () => {
+        const isLastSlide = currentIndex === images.length - 1;
+        const newIndex = isLastSlide ? 0 : currentIndex + 1;
+        setCurrentIndex(newIndex);
+    };
+
+    return (
+        <div className='p-10 flex flex-col gap-8 items-center justify-center'>
+            <div className="relative left-[10%]">
+                <button onClick={goToPrevious} className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-r">←</button>
+                <button onClick={goToNext} className="absolute right-[20%] top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-l">→</button>
+                <img src={images[currentIndex]} alt={`Slide ${currentIndex + 1}`} className="w-[80%] h-[80%]"/>
+                <div className="absolute bottom-4 left-[40%] transform -translate-x-1/2 flex space-x-2">
+                    {images.map((_, index) => (
+                        <button
+                            key={index}
+                            onClick={() => setCurrentIndex(index)}
+                            className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-400'}`}/>
+                    ))}
+                </div>
+            </div>
+            <a target='_blank' href={href}></a><Button><Text variant={TextVariant.H3}>Купить билет</Text></Button>
+        </div>
+
+    );
 };
+
+export default Photos;

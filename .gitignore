@@ -6,6 +6,12 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+YANDEX_METRIKA_ID=your_yandex_id_here
+MAIL_RU_ID=your_mail_ru_id_here
+
+.env
+.env.local
+.env.*.local
 
 node_modules/
 dist/

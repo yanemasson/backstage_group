@@ -19,7 +19,6 @@ declare global {
 const YandexMetrika: React.FC<YandexMetrikaProps> = ({ counterId }) => {
   useEffect(() => {
     console.log('Яндекс Метрика работает')
-    // Создаем и добавляем скрипт Яндекс.Метрики
     const script = document.createElement('script');
     script.text = `
       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -38,7 +37,6 @@ const YandexMetrika: React.FC<YandexMetrikaProps> = ({ counterId }) => {
     `;
     document.head.appendChild(script);
 
-    // Добавление noscript элемента
     const noscript = document.createElement('noscript');
     const div = document.createElement('div');
     const img = document.createElement('img');
@@ -50,7 +48,6 @@ const YandexMetrika: React.FC<YandexMetrikaProps> = ({ counterId }) => {
     noscript.appendChild(div);
     document.body.appendChild(noscript);
 
-    // Очистка при размонтировании компонента
     return () => {
       document.head.removeChild(script);
       document.body.removeChild(noscript);

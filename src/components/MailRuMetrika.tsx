@@ -20,12 +20,8 @@ declare global {
 
 const MailRuMetrika: React.FC<MailRuMetrikaProps> = ({ counterId }) => {
   useEffect(() => {
-    console.log('Майл Ру Метрика работает')
-    // Инициализация _tmr
     window._tmr = window._tmr || [];
     window._tmr.push({id: counterId, type: "pageView", start: (new Date()).getTime()});
-
-    // Создание и добавление скрипта
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.async = true;
@@ -37,10 +33,7 @@ const MailRuMetrika: React.FC<MailRuMetrikaProps> = ({ counterId }) => {
       firstScript.parentNode?.insertBefore(script, firstScript);
     };
 
-    // Просто вызываем insertScript без проверки на opera
     insertScript();
-
-    // Добавление noscript элемента
     const noscript = document.createElement('noscript');
     const div = document.createElement('div');
     const img = document.createElement('img');
@@ -52,7 +45,6 @@ const MailRuMetrika: React.FC<MailRuMetrikaProps> = ({ counterId }) => {
     noscript.appendChild(div);
     document.body.appendChild(noscript);
 
-    // Очистка при размонтировании компонента
     return () => {
       if (script.parentNode) {
         script.parentNode.removeChild(script);

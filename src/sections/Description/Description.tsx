@@ -1,19 +1,34 @@
 import {Text, TextVariant} from '../../components/Text';
-import {Button} from '../../components/Button.tsx';
+import {Button} from "../../components/Button.tsx";
 
-type DesProps = {
-  href: string
+interface DescriptionProps {
+    href: string;
 }
-export const Description = ({href}: DesProps) => {
+
+export const Description = ({href}:DescriptionProps)  => {
   return (
-    <div className='flex p-6 gap-4 flex-col text-[#252B42] items-start'>
-      <Text variant={TextVariant.H3}>Уникальная возможность увидеть самые яркие и интересные номера из всемирно известных балетных спектаклей!</Text>
-      <Text variant={TextVariant.H6}>Гала-концерт – это представление, которое позволит зрителю познакомиться с истинными шедеврами балетной классики: на одной сцене в один вечер артисты представляют фрагменты самых знаменитых и любимых зрителями спектаклей – «Лебединое озеро», «Спящая красавица», «Корсар», «Дон Кихот», «Щелкунчик», «Шахерезада» и др.</Text>
-      <Text variant={TextVariant.H6}>В концерте примут участие артисты из Мариинского Театра Оперы и Балета, Красноярского Театра Оперы и Балета, Новосибирского Театра Оперы и Балета НОВАТ и Самарского Академического Театра Оперы и Балета</Text>
-      <Text variant={TextVariant.H6}>Продолжительность - 2 часа</Text>
-      <Text variant={TextVariant.H6}> Филигранная техника, отточенные движения, красота линий, гармония пластики. Настоящий праздник балета в двух отделениях.</Text>
-      <div className='flex pt-6 self-center'>
-        <a target="_blank" href={href}><Button><Text variant={TextVariant.H3}>Купить билет</Text></Button></a>
+    <div className='flex w-full gap-3 p-6 lg:p-3 flex-col text-[#252B42] items-start'>
+        <Text variant={TextVariant.H6}>"Время Рождества" - это время, когда все вокруг верят в волшебство и ждут чуда; время, когда собираются всей семьёй, дарят друг другу подарки, тепло, заботу, любовь...</Text>
+        <Text variant={TextVariant.H6}>Приглашаем Вас 9 и 10 января в 19.00 в Сибирский государственный институт искусств им. Д.А. Хворостовского</Text>
+        <Text variant={TextVariant.H6}>Посетите поистине удивительный концерт "Christmas time" и погрузитесь в атмосферу семейного уютного праздника и торжества.</Text>
+        <Text variant={TextVariant.H6}>Вы услышите незабываемые мелодии и самые известные хиты в исполнении инструментального ансамбля "Маэстро" и солистов Красноярского государственного театра оперы и балета им. Д. А. Хворостовского</Text>
+        <div className='flex items-center flex-col xl:flex-row'>
+            <div>
+                <Text variant={TextVariant.H6}> - Джон Уильямс - музыка из к/ф "Гарри Поттер" и "Один дома"</Text>
+                <Text variant={TextVariant.H6}> - Эндрю Ллойд Уэббер - музыка из мюзикла "Призрак оперы"</Text>
+                <Text variant={TextVariant.H6}> - Джон Уильямс - "Имперский марш" Из к/ф "Звёздные войны"</Text>
+                <Text variant={TextVariant.H6}> - Карлос Гардель - Танго из к/ф "Запах женщины"</Text>
+                <Text variant={TextVariant.H6}> - The Beatles - "Леди Мадонна" и "Hard Day’s Night"</Text>
+                <Text variant={TextVariant.H6}> - Фрэнк Синатра</Text>
+                <Text variant={TextVariant.H6}> - Луис Армстронг</Text>
+            </div>
+            <div className='pt-4 xl:pl-20 xl:self-end'>
+                <a target='_blank' href={href}><Button><Text variant={TextVariant.H3}>Купить билет</Text></Button></a>
+            </div>
+        </div>
+
+
+        <div className='flex pt-6 self-center'>
       </div>
     </div>
   );

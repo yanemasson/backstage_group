@@ -1,29 +1,29 @@
 import './App.css';
-import {Suspense, lazy} from 'react';
-import {HashRouter, Route, Routes} from 'react-router-dom';
-import Loader from './components/Loader.tsx';
 
-
+import YandexMetrika from "./components/YandexMetrika.tsx";
+import MailRuMetrika from "./components/MailRuMetrika.tsx";
+import {Navbar} from "./sections/Navbar";
+import MainImage from "../public/images/main.jpg";
+import {Description} from "./sections/Description";
+import {Footer} from "./sections/Footer";
 
 
 function App() {
-  const MainPage = lazy(()=> import('./pages/MainPage.tsx'))
-  const Mezhdurechensk = lazy(()=> import('./pages/Mezhdurechensk.tsx'))
-  const Novokuznetsk = lazy(() => import('./pages/Novokuznetsk'))
-  const LeninskKuznetskiy = lazy(()=> import('./pages/LeninskKuznetskiy.tsx'))
+
+
   return (
-    <>
-      <HashRouter>
-        <Suspense fallback={<Loader/>}>
-          <Routes>
-            <Route path='/' element={<MainPage/>}/>
-            <Route path="/mezhdurechensk" element={<Mezhdurechensk/>} />
-            <Route path="novokuznetsk" element={<Novokuznetsk/>} />
-            <Route path='leninsk_kuznetskiy' element={<LeninskKuznetskiy/>}/>
-          </Routes>
-        </Suspense>
-      </HashRouter>
-    </>
+      <div className='flex flex-col min-h-screen'>
+        <YandexMetrika counterId={98366893} />
+        <MailRuMetrika counterId="3556729" />
+        <Navbar city={'Красноярск'} place={'Институт искусств им. Хворостовского'} date={'9 января в 19:00'}/>
+        <main className='flex flex-col pb-10 items-center flex-grow '>
+          <div className='flex flex-col lg:flex-row' >
+            <img alt='image' className=' w-full xl:w-[45%] xl:h-[45%]' src={MainImage}/>
+            <Description href='https://krasbilet.ru/events/koncerty-i-shou/2-14475/'/>
+          </div>
+        </main>
+        <Footer />
+      </div>
   );
 }
 
